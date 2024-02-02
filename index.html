@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyWeather</title>
+    <link rel="icon" type="image/x-icon" href="assets/partly-cloud.png">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script defer src="teste.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <section class="body-mask">
+            <header class="header">
+                <div class="header_logo">
+                    <img class="header_logo-img" src="assets/logo.png" alt="Logo">
+                    <h1 class="header_logo-text">MyWeather</h1>
+                </div>
+                <div class="header_search">
+                    <input class="header_search-input" type="search" placeholder="Escolha sua localização.">
+                </div>
+                <input class="weather-input" id="weather-inputid" type="checkbox">
+                <label class="weather-input_label" for="weather-inputid">
+                    <span class="weather-input_span" v-on:click="changeTemperature()"></span>
+                </label>
+            </header>
+            <section class="box">
+                <div class="box_local">
+                    <img class="box_local-img" src="assets/sunny.png" alt="ensolarado">
+                    <div class="box_local-text">
+                        <h1 class="local">Localização: {{ userTemperature.userLocation }}</h1>
+                        <div>
+                            <h2 class="temperature-number">{{ useFahrenheit ? userTemperature.temperatureF :
+                                userTemperature.temperatureC }}</h2>
+                            <h2>º</h2>
+                            <p class="celsius-fahrenheit">C</p>
+                        </div>
+                    </div>
+                    <!-- <div class="temp-min-max">
+                    <p>25º</p>
+                    <p>15º</p>
+                </div> -->
+                </div>
+                <div class="hour-date">
+                    <p class="climate-status">{{ userTemperature.summary }}</p>
+                    <p>&nbsp;-&nbsp;</p>
+                    <p class="week-day">{{ new Date().toLocaleString('pt-br', {weekday:'long'}) }}</p>
+                    <p>&nbsp;</p>
+                    <p class="month-day">{{ new Date().getDate() }}</p>
+                    <p>,&nbsp;</p>
+                    <p class="hour">{{`${new Date().getHours()}:${new Date().getMinutes()}`}}</p>
+                </div>
+                <div class="app">
+                    <table id="weatherForecastTable">
+                        <thead class="table-title">
+                            <th>Date</th>
+                            <th>Temperature</th>
+                            <th>Summary</th>
+                        </thead>
+                        <tbody>
+                            <tr v-for="item in lstTemperatures" :key="item.date">
+                                <td>{{ item.date }}</td>
+
+                                <td>{{ useFahrenheit ? item.temperatureF : item.temperatureC }}</td>
+                                <td><img src="assets/sunny.png" class="imgsun" alt="sunny"></td>
+                                <td>{{ item.summary }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </section>
+    </div>
+</body>
+
+</html>

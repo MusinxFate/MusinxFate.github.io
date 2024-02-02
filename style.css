@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url('header.css');
+@import url('box.css');
+@import url('table.css');
+
+:root{
+    --font: 'Inter', sans-serif;
+    --logo-white: #ffffff;
+    --white: #ffffff;
+    --logo-shadow: #00dcff78;
+    --black: #000000;
+    --transparent-table: #f0ffff66;
+    --box-background: linear-gradient(339deg, #00aaff00 5.49%, #ffe277a5 105.37%);
+    --background-color: linear-gradient(.54deg, #98e4ff 05.49%, #1e55ff 105.37%);
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    width: 100%;
+    height: 100vh;
+}
+body{
+    background: var(--background-color);
+    font-family: var(--font);
+}
+.body-mask{
+    height: 100vh;
+    background-image: url('assets/background.png');
+    background-position: bottom;
+    background-size: cover;
+}

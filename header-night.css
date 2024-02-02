@@ -1,0 +1,76 @@
+.header{
+    display: flex;
+    align-items: flex-end;
+    padding: 0 1rem;
+    justify-content: space-between;
+}
+.header_logo{
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 3%;
+}
+.header_logo-img{
+    display: flex;
+    width: 65px;
+}
+.header_logo-text{
+    font-size: 40px;
+    font-family: var(--font);
+    color: var(--logo-white);
+    text-shadow: 2px 2px 1px var(--logo-shadow);
+}
+.header_search{
+    width: 30%;
+}
+.header_search-input{
+    border: none;
+    border-radius: 24px;
+    color: var(--white);
+    font-size: 0.875rem;
+    padding: 10px 35px 10px 35px;
+    width: 100%;
+    text-align: left;
+    margin-top: 1.5%;
+    background: url("assets/Lupa.svg") no-repeat left;
+    background-size: 15px;
+    background-position: 3%;
+    box-shadow: 1px 3px 5px 2px #00dcff6e;
+}
+.header_search-input::placeholder{
+    color: var(--white);
+    text-align: center;
+}
+.header_search-input:focus{
+    outline: none;
+}
+input[type="search"]::-webkit-search-clear-button {
+    -webkit-appearance: none;
+    appearance: none;
+    display: none;
+}
+input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+    display: none;
+}
+.weather-input{
+    display: none;
+}
+.weather-input_label{
+    width: 281px;
+    height: 70px;
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 16px;     
+}
+.weather-input_span{
+    display: flex;
+    background-image: url('assets/celsiusn.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 65px;
+}
+.weather-input:checked ~ .weather-input_label span{
+    background-image: url('assets/fahrenheit.png');
+
+}
