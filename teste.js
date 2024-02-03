@@ -12,7 +12,7 @@ $(document).ready(function () {
         },
         methods: {
             requestWeather: function () {
-                $.get("https://177.70.248.43:3002/WeatherForecast", (data, status) => {
+                $.get("https://musinx.duckdns.org:3002/WeatherForecast", (data, status) => {
                     this.lstTemperatures = data;
                 });
             },
@@ -20,9 +20,9 @@ $(document).ready(function () {
                 const successCallback = (position) => {
                     let latitude = position.coords.latitude;
                     let longitude = position.coords.longitude;
-                    $.get(`https://177.70.248.43:3002/LocalWeather?latitude=${latitude}&longitude=${longitude}`, (data, status) => {
+                    $.get(`https://musinx.duckdns.org:3002/LocalWeather?latitude=${latitude}&longitude=${longitude}`, (data, status) => {
                         let x = data;
-                        $.get(`https://177.70.248.43:3002/LocalWeatherInfos?country=${x}`, (data, status) => {
+                        $.get(`https://musinx.duckdns.org:3002/LocalWeatherInfos?country=${x}`, (data, status) => {
                             let newTemperature = { date: data.last_updated, temperatureC: data.feelslike_c, temperatureF: data.feelslike_f, summary: data.condition.text, userLocation: x }
                             this.userTemperature = newTemperature;
                         });
