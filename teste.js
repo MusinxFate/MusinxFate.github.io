@@ -16,6 +16,7 @@ const app = Vue.createApp({
             lstTemperatures: [],
             useFahrenheit: false,
             userTemperature: {},
+            userLocation: '',
             useSearch: false
         }
     },
@@ -35,17 +36,10 @@ const app = Vue.createApp({
                 });
         },
         findGeo: function () {
-            const successCallback = async (position) => {
-                fetch('https://musinx.duckdns.org:3002/LocalWeather').then(response => response.text()).then(data => {
-                    this.userTemperature.userLocation = data;
-                });
-            };
-
-            const errorCallback = (error) => {
-                console.log(error);
-            };
-
-            navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+            fetch('https://musinx.duckdns.org:3002/LocalWeather').then(response => response.text()).then(data => {
+                this.userLocation = data;
+                console.log(data);
+            });
         },
         changeTemperature: function () {
             this.useFahrenheit = !this.useFahrenheit;
