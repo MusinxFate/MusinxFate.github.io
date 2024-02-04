@@ -22,7 +22,7 @@
                     <h1 class="header_logo-text">MyWeather</h1>
                 </div>
                 <div class="header_search">
-                    <input class="header_search-input" type="search" placeholder="Escolha sua localização.">
+                    <input class="header_search-input" type="search" placeholder="Choose your location.">
                 </div>
                 <div class="header-checkbox">
                     <button v-on:click="changeSearch()" class="weather-search" id="weather-searchid" type="button">
@@ -37,7 +37,7 @@
                                     <span class="search-back-span" v-on:click="changeSearch()"></span>
                                 </label>
                             </button>
-                            <p>Meus locais:</p>
+                            <p>My previous locations:</p>
                         </div>
                         <div class="input">
                             <button class="track" id="track" type="button">
@@ -46,8 +46,7 @@
                                 </label>
                             </button>
                             <div class="box-input">
-                                <input class="header_search-input2" type="search"
-                                    placeholder="Escolha sua localização.">
+                                <input class="header_search-input2" type="search" placeholder="Choose your location.">
                             </div>
                             <button class="reset" id="reset-history" type="button">
                                 <label for="reset-history">
@@ -63,20 +62,22 @@
             </header>
             <section class="box">
                 <div class="box_local">
-                    <img class="box_local-img" src="assets/sky assets/sunny.png" alt="ensolarado">
+                    <img class="box_local-img" :src='imgUrl' alt="ensolarado">
                     <div class="box_local-text">
                         <h1 class="local">{{ userLocation }}</h1>
                         <div>
                             <h2 class="temperature-number">{{ useFahrenheit ? userTemperature.temperatureF :
                                 userTemperature.temperatureC }}</h2>
                             <h2>º</h2>
-                            <p class="celsius-fahrenheit">C</p>
+                            <p class="celsius-fahrenheit">{{ useFahrenheit ? 'F' : 'C'}}</p>
+                            <div class="temp-min-max">
+                                <p>{{ useFahrenheit ? userTemperature.maxTemperatureF : userTemperature.maxTemperatureC }}
+                                </p>
+                                <p>{{ useFahrenheit ? userTemperature.minTemperatureF : userTemperature.minTemperatureC }}
+                                </p>
+                            </div>
                         </div>
                     </div>
-                    <!-- <div class="temp-min-max">
-                    <p>25º</p>
-                    <p>15º</p>
-                </div> -->
                 </div>
                 <div class="hour-date">
                     <p class="climate-status">{{ userTemperature.summary }}</p>
@@ -92,23 +93,26 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide" v-for="item in lstTemperatures" :key="item.date">
                             <div>
-                                <span>Date:</span>
+                                <span>
+                                    <img :src="item.imgUrl">
+                                </span>
+                            </div>
+                            <div>
+                                <!-- <span>Date:</span>-->
                                 <span>{{ item.date }}</span>
                             </div>
                             <div>
-                                <span>Temperature:</span>
+                                <!-- <span>Temperature:</span> -->
                                 <span>{{ useFahrenheit ? item.temperatureF : item.temperatureC }}</span>
                             </div>
                             <div>
-                                <span>Summary:</span>
+                                <!-- <span>Summary:</span> -->
                                 <span>{{ item.summary }}</span>
                             </div>
                         </div>
                     </div>
-                    <!-- Adicione Navegação -->
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
-                    <!-- Adicione a scrollbar -->
                     <div class="swiper-scrollbar"></div>
                 </div>
             </section>

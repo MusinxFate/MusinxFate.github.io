@@ -11,6 +11,7 @@
     background-color: white;
     height: 100%;
     width: 100%;
+    z-index: 20;
 }
 
 .return {
@@ -68,13 +69,12 @@ label {
     border-radius: 24px;
     color: #00afff;
     font-size: 0.875rem;
-    padding: 10px 35px 10px 35px;
+    padding: 10px 8% 10px 8%;
     text-align: left;
     width: 70vw;
-    margin-top: 1.5%;
     background: url("assets/search-lupa.png") no-repeat left;
-    background-size: 15px;
-    background-position: 5%;
+    background-size: 0.875rem;
+    background-position: 3%;
     box-shadow: 1px 3px 5px 2px #00dcff6e;
 }
 
@@ -85,18 +85,6 @@ label {
 
 .header_search-input2:focus {
     outline: none;
-}
-
-input[type="search"]::-webkit-search-clear-button {
-    -webkit-appearance: none;
-    appearance: none;
-    display: none;
-}
-
-input[type="search"]::-webkit-search-cancel-button {
-    -webkit-appearance: none;
-    appearance: none;
-    display: none;
 }
 
 .reset-span {

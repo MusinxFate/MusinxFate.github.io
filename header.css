@@ -32,12 +32,12 @@
     border-radius: 24px;
     color: var(--white);
     font-size: 0.875rem;
-    padding: 10px 2% 10px 8%;
+    padding: 10px 8% 10px 8%;
     width: 100%;
     text-align: left;
     margin-top: 1.5%;
-    background: url("assets/Lupa.svg") no-repeat left;
-    background-size: 15px;
+    background: url("assets/lupa.svg") no-repeat left;
+    background-size: 0.875rem;
     background-position: 3%;
     box-shadow: 1px 3px 5px 2px #00dcff6e;
 }
@@ -88,11 +88,11 @@ input[type="search"]::-webkit-search-cancel-button {
     justify-content: flex-end;
     padding-top: 6px;
     background-image: url('assets/earth.png');
-    background-size: 57.5%;
+    background-size: 81%;
     background-repeat: no-repeat;
     background-position: center;
     position: relative;
-    top: 6.4px;
+    top: 2.9px;
 }
 
 .weather-search_span {
