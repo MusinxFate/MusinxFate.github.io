@@ -1,43 +1,64 @@
-$(document).ready(function () {
-    var app = new Vue({
-        el: '#app',
-        data: {
-            lstTemperatures: [],
-            useFahrenheit: false,
-            userTemperature: {}
+document.addEventListener('DOMContentLoaded', function () {
+    swiper = new Swiper('.swiper', {
+        speed: 400,
+        spaceBetween: 100,
+        slidesPerView: 3,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
         },
-        mounted: function () {
-            this.requestWeather();
-            this.findGeo();
-        },
-        methods: {
-            requestWeather: function () {
-                $.get("https://musinx.duckdns.org:3002/WeatherForecast", (data, status) => {
-                    this.lstTemperatures = data;
-                });
-            },
-            findGeo: function () {
-                const successCallback = (position) => {
-                    let latitude = position.coords.latitude;
-                    let longitude = position.coords.longitude;
-                    $.get(`https://musinx.duckdns.org:3002/LocalWeather?latitude=${latitude}&longitude=${longitude}`, (data, status) => {
-                        let x = data;
-                        $.get(`https://musinx.duckdns.org:3002/LocalWeatherInfos?country=${x}`, (data, status) => {
-                            let newTemperature = { date: data.last_updated, temperatureC: data.feelslike_c, temperatureF: data.feelslike_f, summary: data.condition.text, userLocation: x }
-                            this.userTemperature = newTemperature;
-                        });
-                    });
-                };
-
-                const errorCallback = (error) => {
-                    console.log(error);
-                };
-
-                navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
-            },
-            changeTemperature: function () {
-                this.useFahrenheit = !this.useFahrenheit;
-            }
-        }
     });
 });
+
+const app = Vue.createApp({
+    data() {
+        return {
+            lstTemperatures: [],
+            useFahrenheit: false,
+            userTemperature: {},
+            useSearch: false
+        }
+    },
+
+    methods: {
+        requestWeather: function () {
+            fetch('https://musinx.duckdns.org:3002/WeatherForecast').then(response =>
+                response.text()).then(data => {
+                    data = JSON.parse(data);
+                    data.forEach(a => {
+                        const parsedDate = new Date(a.date);
+                        a.date = parsedDate.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' });
+                    });
+                    this.userTemperature = data[0];
+                    data.shift();
+                    this.lstTemperatures = data;
+                });
+        },
+        findGeo: function () {
+            const successCallback = async (position) => {
+                fetch('https://musinx.duckdns.org:3002/LocalWeather').then(response => response.text()).then(data => {
+                    this.userTemperature.userLocation = data;
+                });
+            };
+
+            const errorCallback = (error) => {
+                console.log(error);
+            };
+
+            navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+        },
+        changeTemperature: function () {
+            this.useFahrenheit = !this.useFahrenheit;
+        },
+        changeSearch: function () {
+            this.useSearch = this.useSearch === false ? true : false;
+        }
+    },
+
+    beforeMount() {
+        this.findGeo();
+        this.requestWeather();
+    }
+})
+
+app.mount('#app');

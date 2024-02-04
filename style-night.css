@@ -1,32 +1,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
-@import url('header.css');
+@import url('header-night.css');
 @import url('box.css');
+@import url('table.css');
+@import url('searchstyle.css');
 
-:root{
+:root {
     --font:
-    'Inter', sans-serif;
+        'Inter', sans-serif;
     --logo-white: #ffffff;
     --white: #ffffff;
     --logo-shadow: #00dcff78;
     --black: #000000;
-    --background-color: linear-gradient(.54deg, #430636 05.49%, #030b23 105.37%);
+    --background-color-night: linear-gradient(.54deg, #430636 05.49%, #030b23 105.37%);
 }
-*{
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-html{
+
+html {
     width: 100%;
     height: 100vh;
 }
-body{
-    background: var(--background-color);
+
+body {
+    background: var(--background-color-night);
     font-family: var(--font);
 }
-.body-mask{
+
+.body-mask {
     height: 100vh;
-    background-image: url('assets/background.png');
+    background-image: url('assets/background-night.png');
     background-position: bottom;
     background-size: cover;
 }

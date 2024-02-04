@@ -1,0 +1,115 @@
+/* background: linear-gradient(187deg, #152f2d, transparent); */
+
+.header_search-box {
+    padding: .75em;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    white-space: nowrap;
+    position: absolute;
+    right: 0%;
+    background-color: white;
+    height: 100%;
+    width: 100%;
+}
+
+.return {
+    display: inline-flex;
+    gap: 10%;
+    align-items: center;
+    color: #00afff;
+}
+
+.track {
+    display: flex;
+    background: none;
+    border: none;
+}
+
+.track-span {
+    background-image: url('assets/track.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 60%;
+    width: 40px;
+    height: 30px;
+    padding-left: 2.5px;
+}
+
+.search-back {
+    display: block;
+    border: none;
+    background: none;
+}
+
+label {
+    display: flex;
+}
+
+.search-back-span {
+    background-image: url('assets/back.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 40px;
+    height: 30px;
+}
+
+.input {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.header_search-input2 {
+    border: none;
+    border-radius: 24px;
+    color: #00afff;
+    font-size: 0.875rem;
+    padding: 10px 35px 10px 35px;
+    text-align: left;
+    width: 70vw;
+    margin-top: 1.5%;
+    background: url("assets/search-lupa.png") no-repeat left;
+    background-size: 15px;
+    background-position: 5%;
+    box-shadow: 1px 3px 5px 2px #00dcff6e;
+}
+
+.header_search-input2::placeholder {
+    color: #00afff;
+    text-align: center;
+}
+
+.header_search-input2:focus {
+    outline: none;
+}
+
+input[type="search"]::-webkit-search-clear-button {
+    -webkit-appearance: none;
+    appearance: none;
+    display: none;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+    display: none;
+}
+
+.reset-span {
+    background-image: url('assets/trash.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 70%;
+    width: 42.5px;
+    height: 30px;
+    padding: 1px 2.5px 0 0;
+}
+
+.reset {
+    background: none;
+    border: none;
+}

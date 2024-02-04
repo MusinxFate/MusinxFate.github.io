@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -7,14 +7,15 @@
     <title>MyWeather</title>
     <link rel="icon" type="image/x-icon" href="assets/partly-cloud.png">
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script defer src="teste.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11.0.5/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11.0.5/swiper-bundle.min.js"></script>
+    <script src="teste.js" defer></script>
 </head>
 
 <body>
-    <div id="app">
-        <section class="body-mask">
+    <section class="body-mask">
+        <div id="app">
             <header class="header">
                 <div class="header_logo">
                     <img class="header_logo-img" src="assets/logo.png" alt="Logo">
@@ -23,16 +24,48 @@
                 <div class="header_search">
                     <input class="header_search-input" type="search" placeholder="Escolha sua localização.">
                 </div>
-                <input class="weather-input" id="weather-inputid" type="checkbox">
-                <label class="weather-input_label" for="weather-inputid">
-                    <span class="weather-input_span" v-on:click="changeTemperature()"></span>
-                </label>
+                <div class="header-checkbox">
+                    <button v-on:click="changeSearch()" class="weather-search" id="weather-searchid" type="button">
+                        <label class="weather-search_label" for="weather-searchid">
+                            <span class="weather-search_span"></span>
+                        </label>
+                    </button>
+                    <section class="header_search-box" v-if="useSearch" :style="{ display: 'flex'}">
+                        <div class="return">
+                            <button class="search-back" id="search-back" type="button">
+                                <label for="search-back">
+                                    <span class="search-back-span" v-on:click="changeSearch()"></span>
+                                </label>
+                            </button>
+                            <p>Meus locais:</p>
+                        </div>
+                        <div class="input">
+                            <button class="track" id="track" type="button">
+                                <label for="track">
+                                    <span class="track-span"></span>
+                                </label>
+                            </button>
+                            <div class="box-input">
+                                <input class="header_search-input2" type="search"
+                                    placeholder="Escolha sua localização.">
+                            </div>
+                            <button class="reset" id="reset-history" type="button">
+                                <label for="reset-history">
+                                    <span class="reset-span"></span>
+                                </label>
+                        </div>
+                    </section>
+                    <input class="weather-input" id="weather-inputid" type="checkbox">
+                    <label class="weather-input_label" for="weather-inputid">
+                        <span class="weather-input_span" v-on:click="changeTemperature()"></span>
+                    </label>
+                </div>
             </header>
             <section class="box">
                 <div class="box_local">
-                    <img class="box_local-img" src="assets/sunny.png" alt="ensolarado">
+                    <img class="box_local-img" src="assets/sky assets/sunny.png" alt="ensolarado">
                     <div class="box_local-text">
-                        <h1 class="local">Localização: {{ userTemperature.userLocation }}</h1>
+                        <h1 class="local">{{ userTemperature.userLocation }}</h1>
                         <div>
                             <h2 class="temperature-number">{{ useFahrenheit ? userTemperature.temperatureF :
                                 userTemperature.temperatureC }}</h2>
@@ -48,33 +81,39 @@
                 <div class="hour-date">
                     <p class="climate-status">{{ userTemperature.summary }}</p>
                     <p>&nbsp;-&nbsp;</p>
-                    <p class="week-day">{{ new Date().toLocaleString('pt-br', {weekday:'long'}) }}</p>
+                    <p class="week-day">{{ new Date().toLocaleString('en-US', {weekday:'long'}) }}</p>
                     <p>&nbsp;</p>
                     <p class="month-day">{{ new Date().getDate() }}</p>
                     <p>,&nbsp;</p>
-                    <p class="hour">{{`${new Date().getHours()}:${new Date().getMinutes()}`}}</p>
+                    <p class="hour">{{`${new Date().getHours()}:${String(new Date().getMinutes()).padStart(2, '0')}`
+                        }}</p>
                 </div>
-                <div class="app">
-                    <table id="weatherForecastTable">
-                        <thead class="table-title">
-                            <th>Date</th>
-                            <th>Temperature</th>
-                            <th>Summary</th>
-                        </thead>
-                        <tbody>
-                            <tr v-for="item in lstTemperatures" :key="item.date">
-                                <td>{{ item.date }}</td>
-
-                                <td>{{ useFahrenheit ? item.temperatureF : item.temperatureC }}</td>
-                                <td><img src="assets/sunny.png" class="imgsun" alt="sunny"></td>
-                                <td>{{ item.summary }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide" v-for="item in lstTemperatures" :key="item.date">
+                            <div>
+                                <span>Date:</span>
+                                <span>{{ item.date }}</span>
+                            </div>
+                            <div>
+                                <span>Temperature:</span>
+                                <span>{{ useFahrenheit ? item.temperatureF : item.temperatureC }}</span>
+                            </div>
+                            <div>
+                                <span>Summary:</span>
+                                <span>{{ item.summary }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Adicione Navegação -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <!-- Adicione a scrollbar -->
+                    <div class="swiper-scrollbar"></div>
                 </div>
             </section>
-        </section>
-    </div>
+        </div>
+    </section>
 </body>
 
 </html>
