@@ -3,12 +3,8 @@ document.addEventListener('DOMContentLoaded', function () {
         speed: 400,
         spaceBetween: 100,
         slidesPerView: 3,
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
         breakpoints: {
-            320: {
+            0: {
               slidesPerView: 1,
               spaceBetween: 20
             },

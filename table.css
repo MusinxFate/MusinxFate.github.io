@@ -11,8 +11,8 @@
     width: 100%;
 }
 
-.swiper-slide {
-    display: flex;
+.swiper-slide{
+    display: flex !important;
     flex-direction: column;
     border-radius: 16px;
     padding: .5em 1em;
@@ -21,11 +21,14 @@
     align-items: center;
     justify-content: space-around;
     white-space: nowrap;
+    color: var(--white);
+    text-shadow: 1px 1px 2px var(--black);
 }
 
 .swiper-slide:hover {
     transform: scale(1.15);
 }
+
 .imgsun {
     width: 40px;
 }
