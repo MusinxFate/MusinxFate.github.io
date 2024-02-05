@@ -10,6 +10,17 @@
     z-index: 20;
 }
 
+.header_search-box{
+    padding: .75em;
+    display: none;
+    position: absolute;
+    right: 0%;
+    background: var(--white);
+    height: 100%;
+    width: 100%;
+    z-index: 20;
+}
+
 .search-box-mask {
     padding: .75em;
     display: flex;
