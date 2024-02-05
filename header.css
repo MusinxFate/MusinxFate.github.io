@@ -95,6 +95,20 @@ input[type="search"]::-webkit-search-cancel-button {
     top: 2.9px;
 }
 
+.weather-search_label-night {
+    width: 45px;
+    height: 45px;
+    display: none;
+    justify-content: flex-end;
+    padding-top: 6px;
+    background-image: url('assets/earthN.png');
+    background-size: 81%;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    top: 2.9px;
+}
+
 .weather-search_span {
     display: flex;
     background-image: url('assets/lupa.svg');
@@ -121,8 +135,21 @@ input[type="search"]::-webkit-search-cancel-button {
     width: 45px;
 }
 
-.weather-input:checked~.weather-input_label span {
+.weather-input_span-night {
+    display: flex;
+    background-image: url('assets/celsiusN.png');
+    background-size: 85%;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 45px;
+}
+
+.weather-input:checked~.weather-input_label .weather-input_span {
     background-image: url('assets/fahrenheit.png');
+}
+
+.weather-input:checked~.weather-input_label .weather-input_span-night {
+    background-image: url('assets/fahrenheitN.png');
 }
 
 @media screen and (max-width: 992px) {
@@ -130,7 +157,7 @@ input[type="search"]::-webkit-search-cancel-button {
         display: none;
     }
 
-    .weather-search_label {
+    .weather-search_label, .weather-search_label-night {
         display: flex;
     }
 

@@ -14,11 +14,11 @@
 </head>
 
 <body>
-    <section class="body-mask">
+    <section class="body-mask" id="clouds">
         <div id="app">
             <header class="header">
                 <div class="header_logo">
-                    <img class="header_logo-img" src="assets/logo.png" alt="Logo">
+                    <img class="header_logo-img" :src="logoUrl" alt="Logo">
                     <h1 class="header_logo-text">MyWeather</h1>
                 </div>
                 <div class="header_search">
@@ -26,44 +26,50 @@
                 </div>
                 <div class="header-checkbox">
                     <button v-on:click="changeSearch()" class="weather-search" id="weather-searchid" type="button">
-                        <label class="weather-search_label" for="weather-searchid">
+                        <label :class="{ 'weather-search_label-night': isNight, 'weather-search_label': !isNight }"
+                            for="weather-searchid" id="earth">
                             <span class="weather-search_span"></span>
                         </label>
                     </button>
-                    <section class="header_search-box" v-if="useSearch" :style="{ display: 'flex'}">
-                        <div class="return">
-                            <button class="search-back" id="search-back" type="button">
-                                <label for="search-back">
-                                    <span class="search-back-span" v-on:click="changeSearch()"></span>
-                                </label>
-                            </button>
-                            <p>My previous locations:</p>
-                        </div>
-                        <div class="input">
-                            <button class="track" id="track" type="button">
-                                <label for="track">
-                                    <span class="track-span"></span>
-                                </label>
-                            </button>
-                            <div class="box-input">
-                                <input class="header_search-input2" type="search" placeholder="Choose your location.">
+                    <section :class="{ 'header_search-box-night':isNight, 'header_search-box': !isNight }"
+                        v-if="useSearch" :style="{ display: 'flex'}">
+                        <div :class="{ 'search-box-mask-night': isNight, 'search-box-mask': !isNight }">
+                            <div class="return">
+                                <button class="search-back" id="search-back" type="button">
+                                    <label for="search-back">
+                                        <span class="search-back-span" v-on:click="changeSearch()"></span>
+                                    </label>
+                                </button>
+                                <p>My previous locations:</p>
                             </div>
-                            <button class="reset" id="reset-history" type="button">
-                                <label for="reset-history">
-                                    <span class="reset-span"></span>
-                                </label>
+                            <div class="input">
+                                <button class="track" id="track" type="button">
+                                    <label for="track">
+                                        <span class="track-span"></span>
+                                    </label>
+                                </button>
+                                <div class="box-input">
+                                    <input class="header_search-input2" type="search"
+                                        placeholder="Choose your location.">
+                                </div>
+                                <button class="reset" id="reset-history" type="button">
+                                    <label for="reset-history">
+                                        <span class="reset-span"></span>
+                                    </label>
+                            </div>
                         </div>
                     </section>
                     <input class="weather-input" id="weather-inputid" type="checkbox">
                     <label class="weather-input_label" for="weather-inputid">
-                        <span class="weather-input_span" v-on:click="changeTemperature()"></span>
+                        <span :class="{ 'weather-input_span-night': isNight, 'weather-input_span': !isNight }"
+                            v-on:click="changeTemperature()" id="celsiusCng"></span>
                     </label>
                 </div>
             </header>
             <section class="box">
                 <div class="box_local">
                     <h1 class="local">{{ userLocation }}</h1>
-                    
+
                     <div class="box_local-text">
                         <img class="box_local-img" :src='imgUrl' alt="ensolarado">
                         <div class="temperature">
@@ -72,9 +78,11 @@
                             <h2>º</h2>
                             <p class="celsius-fahrenheit">{{ useFahrenheit ? 'F' : 'C'}}</p>
                             <div class="temp-min-max">
-                                <p>{{ useFahrenheit ? userTemperature.maxTemperatureF : userTemperature.maxTemperatureC }}º
+                                <p>{{ useFahrenheit ? userTemperature.maxTemperatureF : userTemperature.maxTemperatureC
+                                    }}º
                                 </p>
-                                <p>{{ useFahrenheit ? userTemperature.minTemperatureF : userTemperature.minTemperatureC }}º
+                                <p>{{ useFahrenheit ? userTemperature.minTemperatureF : userTemperature.minTemperatureC
+                                    }}º
                                 </p>
                             </div>
                         </div>

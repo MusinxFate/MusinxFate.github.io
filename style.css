@@ -13,9 +13,7 @@
     --logo-shadow: #00dcff78;
     --black: #000000;
     --transparent-table: #f0ffff66;
-    --box-background: linear-gradient(339deg, #00aaff00 5.49%, #ffffffa5 105.37%);
-    --box-background-night: linear-gradient(323deg, #430636b3, #051b5fcc);
-    --background-color: linear-gradient(.54deg, #98e4ff 05.49%, #1e55ff 105.37%);
+    --box-background: linear-gradient(339deg, #00aaff00 5.49%, #ffffffa5 105.37%);    --background-color: linear-gradient(.54deg, #98e4ff 05.49%, #1e55ff 105.37%);
     --background-color-night: linear-gradient(.54deg, #430636 05.49%, #030b23 105.37%);
     --night-shadow: 1px 8px 10px 0px #051b5f91;
 }
@@ -36,9 +34,20 @@ body {
     font-family: var(--font);
 }
 
+.body-night{
+    background: var(--background-color-night);
+    font-family: var(--font);
+}
+
 .body-mask {
     height: 100vh;
     background-image: url('assets/background.png');
+    background-position: bottom;
+    background-size: cover;
+}
+.body-mask-night {
+    height: 100vh;
+    background-image: url('assets/stars.png');
     background-position: bottom;
     background-size: cover;
 }

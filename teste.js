@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     swiper = new Swiper('.swiper', {
         speed: 400,
-        spaceBetween: 100,
         slidesPerView: 3,
         breakpoints: {
             0: {
@@ -12,11 +11,15 @@ document.addEventListener('DOMContentLoaded', function () {
               slidesPerView: 2,
               spaceBetween: 30
             },
-            640: {
+            750: {
               slidesPerView: 3,
-              spaceBetween: 40
+              spaceBetween: 30
             },
             1000: {
+                slidesPerView: 4,
+                spaceBetween: 40
+            },
+            1600: {
                 slidesPerView: 5,
                 spaceBetween: 50
             }
@@ -32,7 +35,9 @@ const app = Vue.createApp({
             userTemperature: {},
             userLocation: '',
             useSearch: false,
-            imgUrl: ''
+            imgUrl: '',
+            isNight: false,
+            logoUrl: ''
         }
     },
 
@@ -66,9 +71,16 @@ const app = Vue.createApp({
         checkTimeDay: function() {
             let date = new Date();
             if (date.getHours() < 5 || date.getHours() > 18) {
-                this.imgUrl = 'assets/luna.png';
+                this.imgUrl = 'assets/sky assets/clear-night.png';
+                this.isNight = true;
+                this.logoUrl = 'assets/logon.png';
+                let backgroundimg = document.getElementById('clouds');
+                backgroundimg.classList.add('body-mask-night');
+                document.body.classList.add('body-night');
             } else{
                 this.imgUrl = '/assets/sunny.png';
+                this.isNight = false;
+                this.logoUrl = 'assets/logo.png';
             }
         }
     },
